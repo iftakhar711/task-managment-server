@@ -17,7 +17,7 @@ async function run() {
     try {
 
         const tasksCollection = client.db('task-collection').collection('added-task')
-        // const productsCollection = client.db('used-products').collection('products')
+        const completedCollection = client.db('task-collection').collection('completed-tasks')
 
 
         app.post('/tasks', async (req, res) => {
@@ -31,6 +31,16 @@ async function run() {
             const result = await tasksCollection.insertOne(query);
             res.send(result);
         });
+        // app.post('/completedtasks', async (req, res) => {
+        //     const tasks = req.body;
+        //     const query = {
+        //         task: tasks.task,
+        //         details: tasks.details,
+
+        //     }
+        //     const result = await completedCollection.insertOne(query);
+        //     res.send(result);
+        // });
 
         app.get('/tasks', async (req, res) => {
             const query = {}
